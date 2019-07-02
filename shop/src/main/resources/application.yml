@@ -1,0 +1,110 @@
+server:
+  port: 6666
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: shop
+  jpa:
+    show-sql: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.:3306/irs?useUnicode=true&allowMultiQueries=true&characterEncoding=utf8&characterSetResults=utf8&allowMultiQueries=true
+    username: root
+    password: 5R7VpuIn@A
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.40:8848,192.168.2.43:8848,192.168.2.11:8848
+
+  redis:
+    host: 192.168.2.40
+    port: 6379
+    # 密码 没有则可以不填
+    password: rabbit123@
+  main:
+    allow-bean-definition-overriding: true
+
+
+  swagger:
+    # 维护人.
+    contact:
+      name: Aaron
+    # swagger扫描的基础包,默认:全扫描.
+    base-package: com.ahies.cloud.wos
+
+  #时间戳统一转换
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    global-config:
+      #驼峰下划线转换
+      db-column-underline: true
+
+logging:
+  level:
+    com.ahies.cloud.wos.mapper: debug
+
+sysConfig:
+  refresh:
+    #系统配置刷新间隔和时间 默认180000 = 3*60*1000 3分钟
+    timer_delay: 0
+    timer_period: 180000
+
+#超级管理员id 用于job任务、canal操作的标识用户
+superadmin:
+  user:
+    id: 1113311564821225473
+
+#jwt公钥
+jwt:
+  token:
+    pubKeyPath: public.key
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.2.43:8762/eureka
+      #defaultZone: http://127.0.0.1:8761/eureka
+
+ribbon:
+  eager-load:
+    #开启Ribbon的饥饿加载模式
+    enabled: true
+    #指定需要饥饿加载的服务名
+    clients: uac, bds
+
+sms:
+  reg: ^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$ ##手机号码正则表达式，为空则不做验证
+  web:
+    enable: false ##启用web端点
+    base-path: /commons/sms ##访问路径前缀
+  aliyun:
+    enable: true ##启用阿里云的短信业务客户端
+    access-key-id: LTAIUzkEo4SXauo7
+    access-key-secret: GXigVdMmFx61ZajKre2G2oyFbNuyvS
+    endpoint: cn-hangzhou ##endpoint，默认为cn-hangzhou
+    sign-name: 飞服信息技术 ##短信签名
+    templates:
+      order: SMS_166776999 ##短信模板
+
+wechat:
+  appid: wxb51fdb1b47689b79
+  appsecret:
+  templates:
+    declareuser: UyXP7DE7XAhj7Pj11t72r8ztmRLtYwFEsEUTGiblgJM ##申报用户模板
+    reinforceuser: A0EJZONDk-y2NcJ-7D1orXqH3vb9CSMA_gm8JZCD6Zk ##增援工程师模板
+    processuser: A0EJZONDk-y2NcJ-7D1orXqH3vb9CSMA_gm8JZCD6Zk ##运维工程师模板
+  orderurl: ##工单微信跳转url
+    declareuser: http://weixin.zj9495.cn/#/order/detail?id=  ##申报用户跳转url http://192.168.2.43:8083/#/order/detail?id=1135799153955467266
+    reinforceuser: http://weixin.zj9495.cn/engineer.html#/order/detail?id=  ##工程师跳转url http://192.168.2.43:8083/engineer.html#/order/detail?id=1135799153955467266
+    processuser: http://weixin.zj9495.cn/engineer.html#/order/detail?id=
