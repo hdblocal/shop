@@ -8,7 +8,7 @@
     <artifactId>shop</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>shop</name>
+    <name>shop.</name>
     <url>http://www.example.com</url>
 
     <properties>
