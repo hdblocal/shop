@@ -73,7 +73,7 @@
 
     </dependencies>
 
-     <build>
+<build>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -88,8 +88,13 @@
             </archive>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.4.1</version>
+        </plugin>
       </plugins>
-    </pluginManagement>
-  </build>
+         </pluginManagement>
+  </build> 
          
 </project>
